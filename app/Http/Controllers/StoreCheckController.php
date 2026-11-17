@@ -2,15 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Http\Requests\CheckStoreRequest;
 
 class StoreCheckController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request): string
+    public function __invoke(CheckStoreRequest $request): string
     {
-        return 'URL recebida: '.$request->input('url');
+        return 'URL recebida: '.$request->validated('url');
     }
 }
