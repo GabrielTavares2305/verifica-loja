@@ -12,7 +12,7 @@
     <p>Cole abaixo o link do anúncio que você recebeu ou encontrou.</p>
     <div>
         
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('check') }}">
             @csrf
             <label for="url">Link do anúncio</label><br>
             <input type="url" id="url" name="url" placeholder="https://..." required><br><br>
