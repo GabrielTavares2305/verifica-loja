@@ -9,6 +9,8 @@ O público-alvo inclui pessoas leigas e idosas, então a interface e os textos d
 - Sou iniciante em programação e estou **aprendendo Laravel** com este projeto.
 - No futuro quero usar **Livewire** (planejado para a Fase 7).
 - Prefiro explicações detalhadas: quero saber **por que** estou executando cada ação.
+- Este projeto também é meu **portfólio** para processos seletivos (vagas que envolvem IA, agentes,
+  automações e integrações). Por isso quero entender cada decisão a ponto de explicá-la numa entrevista.
 
 ## Como você (Claude) deve me ajudar
 1. **Explique antes de fazer.** Antes de qualquer código ou comando, explique o conceito do Laravel
@@ -57,6 +59,12 @@ O público-alvo inclui pessoas leigas e idosas, então a interface e os textos d
   descontos exagerados. Evitar scraping de sites de terceiros.
 
 ## Fases do projeto
+
+**Regra:** seguir as fases NA ORDEM. Não começar a Etapa 2 antes de concluir a Etapa 1, mesmo que
+eu peça algo de IA antes da hora — nesse caso, me lembre do plano e explique o que falta. Dentro de
+cada fase, dividir em passos pequenos e fazer um de cada vez.
+
+### Etapa 1 — Fundamentos de Laravel (AGORA)
 - [ ] **Fase 1:** Formulário com URL → extrair domínio → baixar página → achar CNPJ (regex) →
       consultar BrasilAPI → mostrar resultado. *(Rotas, controllers, Blade, validação, HTTP Client, regex)*
 - [ ] **Fase 2:** Idade do domínio via RDAP; tratamento de erros. *(Services, exceptions)*
@@ -65,13 +73,35 @@ O público-alvo inclui pessoas leigas e idosas, então a interface e os textos d
 - [ ] **Fase 5:** Análise em segundo plano com cache. *(Queues, Jobs, Cache)*
 - [ ] **Fase 6:** Login e denúncias de usuários. *(Autenticação, relacionamentos, policies)*
 - [ ] **Fase 7:** Resultados ao vivo na tela. *(Livewire)*
-- [ ] **Fase 8:** Testes automatizados de cada verificação. *(Pest/PHPUnit, Http::fake)*
+- [ ] **Fase 8:** Testes automatizados de cada verificação. *(Pest, Http::fake)*
+
+### Etapa 2 — IA, agentes e automação (DEPOIS da Etapa 1)
+- [ ] **Fase 9:** API REST do sistema (endpoint que recebe uma URL e devolve o resultado em JSON).
+      *(Rotas de API, autenticação por token, rate limiting)* — base para as fases 10 e 15.
+- [ ] **Fase 10:** n8n + bot de mensagens (Telegram/WhatsApp): o usuário envia o link e recebe a
+      resposta na conversa; alertas de novas denúncias. *(Webhooks, integração entre sistemas, Docker)*
+- [ ] **Fase 11:** Agente explicador: chamada a um modelo de IA que transforma o resultado técnico em
+      explicação simples. *(API de LLM, prompts, saída estruturada em JSON, custos e limites)*
+- [ ] **Fase 12:** Agente analisador com ferramentas: o modelo analisa o texto do anúncio e decide quais
+      verificações chamar. *(Tool use / function calling; quando usar agente × código fixo)*
+- [ ] **Fase 13:** Evals: conjunto de sites conhecidos (golpe × legítimos) para medir a taxa de acerto
+      a cada mudança de prompt, modelo ou regra. *(Métricas, experimentos)*
+- [ ] **Fase 14:** RAG com guias oficiais e denúncias: buscar casos parecidos e citar a fonte na
+      explicação. *(Embeddings, busca por similaridade, banco vetorial, chunking)*
+- [ ] **Fase 15:** Servidor MCP: expor `verificar_loja(url)` como ferramenta para assistentes de IA.
+      *(Model Context Protocol, pacote laravel/mcp)*
+
+### Regras para a Etapa 2
+- A saída de um modelo de IA é **um sinal a ser conferido**, nunca a decisão final.
+- Chaves de API sempre no `.env`; configurar limite de gastos na conta da API.
+- Antes de cada fase, me explique o conceito (o que é, por que existe, quando NÃO usar).
 
 ## Comandos úteis
 - `php artisan serve` — sobe o servidor local (http://127.0.0.1:8000)
 - `php artisan route:list` — lista as rotas
 - `php artisan test` — roda os testes
 - `php artisan tinker` — console interativo para testar código
+
 <laravel-boost-guidelines>
 === foundation rules ===
 
