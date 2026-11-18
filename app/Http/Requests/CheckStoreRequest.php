@@ -26,4 +26,18 @@ class CheckStoreRequest extends FormRequest
             'url' => ['required', 'url:http,https', 'max:2048'],
         ];
     }
+
+    /**
+     * Get the custom messages for validator errors.
+     *
+     * @return array<string, string>
+     */
+    public function messages(): array
+    {
+        return [
+            'url.required' => 'Digite o link do anúncio.',
+            'url.url' => 'Digite um link válido, que comece com https:// e confira se está completo.',
+            'url.max' => 'Link muito longo, confira se copiou só o endereço.',
+        ];
+    }
 }

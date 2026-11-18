@@ -15,7 +15,10 @@
         <form method="POST" action="{{ route('check') }}">
             @csrf
             <label for="url">Link do anúncio</label><br>
-            <input type="url" id="url" name="url" placeholder="https://..." required><br><br>
+            <input type="url" id="url" name="url" value="{{ old('url') }}" placeholder="https://..." required><br><br>
+            @error('url')
+                <p>{{ $message }}</p>
+            @enderror
             <button type="submit">Verificar</button>
         </form>
     </div>
